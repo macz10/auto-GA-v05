@@ -3,6 +3,7 @@ package org.umssdiplo.automationv01.core.managepage.Login;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
 import org.umssdiplo.automationv01.core.managepage.BasePage;
 import org.umssdiplo.automationv01.core.utils.CommonEvents;
 import org.umssdiplo.automationv01.core.utils.PropertyAccessor;
@@ -26,18 +27,27 @@ public class Adidas extends BasePage {
     @FindBy(css= "button[title='MX 9.5']")
     private WebElement slctSize;
 
-
     @FindBy(css= "button[type='submit']")
     private WebElement addCar;
 
+    @FindBy(css= "span[data-auto-id='add-to-bag-product-info-qty']")
+    private WebElement quantity;
 
-//    public void setCredentials() {
-//        String username = PropertyAccessor.getInstance().getUser();
-//        String password = PropertyAccessor.getInstance().getPassword();
-//        CommonEvents.setInputField(usernameInputField, username);
-//        CommonEvents.setInputField(passwordInputField, password);
-//        CommonEvents.clickButton(loginBtn);
-//    }
+    @FindBy(css = "a[data-auto-id='view-bag-desktop']")
+    private WebElement seeCar;
+
+    @FindBy(css="a.name[title='Calzado de Fútbol X 18.3 TF']")
+    private WebElement title;
+
+    @FindBy(css=".cart-products-payment_total .cart-widget-value")
+    private WebElement totalp;
+
+    @FindBy(css=".totalcolumn .standartprice")
+    private WebElement price1;
+
+    @FindBy(css=".cart-products-payment_total .cart-widget-value")
+    private WebElement quantity1;
+
     public void hoverHombre(){
         mouseOver(tabHombre);
     }
@@ -67,4 +77,31 @@ public class Adidas extends BasePage {
         CommonEvents.clickButton(addCar);
     }
 
+    public void quantity(){
+        CommonEvents.getTextContent(quantity);
+
+    }
+    public void seeCar(){
+        CommonEvents.clickButton(seeCar);
+    }
+
+    public String getTitle() {
+       return CommonEvents.getTextContent(title);
+    }
+
+    public String getTitleText2(){
+        return title.getText();
+    }
+
+    public String getQuantity(){
+        return quantity.getText();
+    }
+
+    public String getPrice1(){
+        return price.getText();
+    }
+
+    public String getTotalPrice(){
+        return totalp.getText();
+    }
 }
